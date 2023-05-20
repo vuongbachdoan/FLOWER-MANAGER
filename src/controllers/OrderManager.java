@@ -6,9 +6,13 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -19,7 +23,8 @@ import models.Order;
  *
  * @author Nguyen Thi Thuy Dung
  */
-public class OrderManager{
+public class OrderManager {
+
     private Scanner scanner = new Scanner(System.in);
     private String idCurrnetUser;
     private Utilities utils = new Utilities();
@@ -33,7 +38,7 @@ public class OrderManager{
 
     public OrderManager(String idCurrnetUser) {
         this.idCurrnetUser = idCurrnetUser;
-        
+
         // fetch orders from file
         ArrayList<String> ordersFromFile = utils.readFileData("src/data/orders.dat");
         for (String orderString : ordersFromFile) {
@@ -42,15 +47,15 @@ public class OrderManager{
             this.totalPrice = Float.parseFloat(orderString.split(",")[2]);
             this.buyerId = orderString.split(",")[3];
 
-            String[] flowersString = utils.extractOrderDetailsFromFile(orderString);
-            for (String flowerString : flowersString) {
-                String flowerId = flowerString.split(":")[0];
-                int flowerQuantities = Integer.parseInt(flowerString.split(":")[1]);
-                flowerOrder.put(
-                        flowerId,
-                        flowerQuantities
-                );
-            }
+//            String[] flowersString = utils.extractOrderDetailsFromFile(orderString);
+//            for (String flowerString : flowersString) {
+//                String flowerId = flowerString.split(":")[0];
+//                int flowerQuantities = Integer.parseInt(flowerString.split(":")[1]);
+//                flowerOrder.put(
+//                        flowerId,
+//                        flowerQuantities
+//                );
+//            }
             orders.add(
                     new Order(this.orderId, this.date, this.buyerId, this.flowerOrder, this.totalPrice)
             );
@@ -59,10 +64,10 @@ public class OrderManager{
         this.orderId = "O" + String.format("%03d", orders.size());
         this.buyerId = this.idCurrnetUser;
         this.date = utils.convertDate(new Date());
+        this.totalPrice = 0.0f;
     }
 
     public void addFlower() {
-        scanner.nextLine();
         System.out.print("Enter flower ID FXXX: ");
         String flowerId = scanner.nextLine();
         System.out.print("Enter quantities: ");
@@ -76,6 +81,7 @@ public class OrderManager{
                             ? flowerOrder.get(flower.getName()) + quantities // increase quantity
                             : quantities // else set quantity is 1
             );
+            System.out.println("Add successfully");
         } else {
             System.out.println("Can't not find flowerID");
         }
@@ -83,39 +89,42 @@ public class OrderManager{
 
     public void viewOrderSorted() {
         System.out.println("#######################################################");
-        System.out.printf("# %-15s %15s %15s #\n", "Order ID", "Date", "Buyer ID");
+        System.out.printf("# %15s # %15s # %15s #\n", "       Order ID", "           Date", "       Buyer ID");
 
         System.out.println("#######################################################");
-        System.out.format("# %-15s # %-15s # %-15s #\n",
+        System.out.format("# %15s # %15s # %15s #\n",
                 orderId, date, buyerId);
 
         System.out.println("#######################################################");
-        System.out.format("# %-15s # %-15s # %-15s #\n",
+        System.out.format("# %15s # %15s # %15s #\n",
                 "    Flower Name", "       Quantity", "          Price");
 
-        Map<String, Integer> sortedMap = new TreeMap<>(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return flowerOrder.get(o1).compareTo(flowerOrder.get(o2));
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Integer>> sortedMap = new LinkedList<Map.Entry<String, Integer>>(this.flowerOrder.entrySet());
+        // Sort the list
+        Collections.sort(sortedMap, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
             }
         });
-        
-        if(sortedMap.size() != 0) {
+
+        if (!sortedMap.isEmpty()) {
             System.out.println("#######################################################");
         }
-        for (Map.Entry<String, Integer> flower : sortedMap.entrySet()) {
-            System.out.format("# %-15s # %-15s # %-15s #\n",
-                    flower.getKey(),
-                    flower.getValue(),
-                    flower.getValue() * flowerManger.findFlowerByName(flower.getKey()).getUnitPrice()
+        for (Map.Entry<String, Integer> entry : sortedMap) {
+            System.out.format("# %15s # %15s # %15f #\n",
+                    entry.getKey(),
+                    entry.getValue().toString(),
+                    entry.getValue() * flowerManger.findFlowerByName(entry.getKey()).getUnitPrice()
             );
-            totalPrice += flower.getValue() * flowerManger.findFlowerByName(flower.getKey()).getUnitPrice();
+            this.totalPrice += entry.getValue() * flowerManger.findFlowerByName(entry.getKey()).getUnitPrice();
         }
         System.out.println("#######################################################");
         System.out.format(
-                "# %-51s #\n",
-                "Total: $" + totalPrice.toString()
+                "# %51s #\n",
+                "Total: $" + this.totalPrice.toString()
         );
         System.out.println("#######################################################");
+        this.totalPrice = 0.0f; // reset total price
     }
 }

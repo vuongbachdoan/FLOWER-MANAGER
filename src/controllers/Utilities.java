@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class Utilities {
 
     public boolean validateNumber(String input) {
-        return input.matches("^[1-9]\\d*$");
+        return !input.isEmpty() && input.matches("^[1-9]\\d*$");
     }
 
     public ArrayList<String> readFileData(String filePath) {
