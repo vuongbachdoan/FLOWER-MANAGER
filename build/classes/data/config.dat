@@ -1,0 +1,5 @@
+account file path: data/accounts.dat
+flower file path: data/flowers.dat
+order file path: data/orders.dat
+customer file path: data/customers.dat
+staff file path: data/staffs.dat
