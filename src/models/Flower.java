@@ -42,4 +42,22 @@ public class Flower {
     public String getImportDate() {
         return importDate;
     }
+
+    public void setFlowerId(String flowerId) {
+        this.flowerId = flowerId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setImportDate(String importDate) {
+        this.importDate = importDate;
+    }
+    
+    
 }

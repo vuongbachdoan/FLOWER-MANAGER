@@ -12,7 +12,7 @@ import models.Account;
  * @author Nguyen Thi Thuy Dung
  */
 public class AccountAuthentication {
-    private AccountManager accountManager = new AccountManager();
+
     private String id;
     private String password;
     private Account account;
@@ -23,7 +23,7 @@ public class AccountAuthentication {
     }
 
     AccountAuthentication() {
-        
+
     }
 
     public void setId(String id) {
@@ -37,10 +37,11 @@ public class AccountAuthentication {
     public Account getAccount() {
         return this.account;
     }
-    
-    public boolean checkLogin () {
+
+    public boolean checkLogin() {
+        AccountManager accountManager = new AccountManager();
         this.account = accountManager.searchById(this.id);
-        if(this.account != null && this.account.getPassword().equals(password)) {
+        if (this.account != null && this.account.getPassword().equals(password)) {
             return true;
         } else {
             this.account = null;

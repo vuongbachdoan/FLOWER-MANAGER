@@ -5,9 +5,16 @@
  */
 package controllers;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
+import models.Account;
 import models.Flower;
 
 /**
@@ -18,6 +25,7 @@ public class FlowerManager {
 
     private Scanner scanner = new Scanner(System.in);
     private Utilities utils = new Utilities();
+    private SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/MM/dd");
     private ArrayList<Flower> flowers = new ArrayList<>();
 
     public FlowerManager() {
@@ -31,23 +39,61 @@ public class FlowerManager {
             ));
         }
     }
-    
+
+    public ArrayList<Flower> getFlowers() {
+        return flowers;
+    }
+
     public Flower findFlower(String flowerId) {
-        for(Flower flower: flowers) {
-            if(flower.getFlowerId().equals(flowerId)) {
+        for (Flower flower : flowers) {
+            if (flower.getFlowerId().equals(flowerId)) {
                 return flower;
             }
         }
         return null;
     }
-    
+
     public Flower findFlowerByName(String flowerName) {
-        for(Flower flower: flowers) {
-            if(flower.getName().equals(flowerName)) {
+        for (Flower flower : flowers) {
+            if (flower.getName().equals(flowerName)) {
                 return flower;
             }
         }
         return null;
+    }
+
+    public void addFlower() {
+        String flowerId = "F" + String.format("%03d", this.flowers.size());
+        System.out.print("Enter flower name: ");
+        String flowerName = scanner.nextLine();
+        System.out.print("Enter price: ");
+        Float price = scanner.nextFloat();
+        scanner.nextLine();
+        Date date = new Date();
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/MM/dd");
+        String formattedDate = dateFormater.format(date);
+
+        this.flowers.add(new Flower(flowerId, flowerName, price, formattedDate));
+    }
+
+    public void modifyFlower() {
+        System.out.print("Enter flowerId FXXX: ");
+        String flowerId = scanner.nextLine();
+        System.out.print("Enter name: ");
+        String flowerName = scanner.nextLine();
+        System.out.print("Enter price: ");
+        Float flowerPrice = scanner.nextFloat();
+        scanner.nextLine();
+        System.out.print("Enter date: ");
+        String date = scanner.nextLine();
+        for (Flower flower : flowers) {
+            if (flower.getFlowerId().equals(flowerId)) {
+                flower.setName(flowerName);
+                flower.setUnitPrice(flowerPrice);
+                flower.setImportDate(date);
+            }
+        }
+        System.out.println("Successfully modify the flower");
     }
 
     public void display() {
@@ -61,5 +107,34 @@ public class FlowerManager {
                     flower.getFlowerId(), flower.getName(), flower.getUnitPrice(), flower.getImportDate());
         };
         System.out.println("|----------------|----------------|----------------|----------------|");
+    }
+
+    public void removeFlower() {
+        System.out.print("Enter flowerId FXXX: ");
+        String flowerId = scanner.nextLine();
+        for (Iterator<Flower> iterator = this.flowers.iterator(); iterator.hasNext();) {
+            Flower flower = iterator.next();
+            if (flower.getFlowerId().equals(flowerId)) {
+                iterator.remove();
+            }
+        }
+        System.out.println("Successfully remove the flower");
+    }
+
+    public void save() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/flowers.dat"));
+            for (Flower flower : this.flowers) {
+                writer.write(flower.getFlowerId() + "," + flower.getName() + "," + String.valueOf(flower.getUnitPrice()) + "," + flower.getImportDate());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addToCart(OrderManager orderManager) {
+        orderManager.addFlower(orderManager);
     }
 }

@@ -5,7 +5,15 @@
  */
 package controllers;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import models.Account;
 
 /**
@@ -14,8 +22,13 @@ import models.Account;
  */
 public class AccountManager {
 
+    private Scanner scanner = new Scanner(System.in);
     private Utilities utils = new Utilities();
     private ArrayList<Account> accounts = new ArrayList<>();
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
 
     public AccountManager() {
         ArrayList<String> accountsFromFile = utils.readFileData("src/data/accounts.dat");
@@ -36,5 +49,18 @@ public class AccountManager {
             }
         }
         return null;
+    }
+    
+    public void save() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/accounts.dat"));
+            for (Account account : this.accounts) {
+                writer.write(account.getAccountId() + "," + account.getPassword() + "," + account.getRole() + "," + account.getCustomerId());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

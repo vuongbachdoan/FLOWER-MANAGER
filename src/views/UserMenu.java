@@ -5,6 +5,8 @@
  */
 package views;
 
+import controllers.AccountManager;
+import controllers.CustomerManager;
 import controllers.FlowerManager;
 import controllers.OrderManager;
 import controllers.Utilities;
@@ -17,7 +19,7 @@ import java.util.Scanner;
 public class UserMenu extends CommonMenu {
     
     private String idCurrnetUser;
-
+    
     public UserMenu(String idCurrnetUser) {
         this.idCurrnetUser = idCurrnetUser;
     }
@@ -25,7 +27,9 @@ public class UserMenu extends CommonMenu {
     public void menu() {
         Scanner scanner = new Scanner(System.in);
         FlowerManager flowerManager = new FlowerManager();
-        OrderManager orderManager = new OrderManager(idCurrnetUser);
+        AccountManager accountManager = new AccountManager();
+        OrderManager orderManager = new OrderManager(idCurrnetUser, accountManager);
+        CustomerManager customerManager = new CustomerManager(idCurrnetUser);
         Utilities utils = new Utilities();
         String inputChoice;
         int choice;
@@ -42,21 +46,35 @@ public class UserMenu extends CommonMenu {
                 inputChoice = scanner.nextLine();
             } while (!utils.validateNumber(inputChoice)
                     && (Integer.parseInt(inputChoice) < 1
-                    || Integer.parseInt(inputChoice) > 8));
+                    || Integer.parseInt(inputChoice) > 6));
             choice = Integer.parseInt(inputChoice);
-
+            
             switch (choice) {
                 case 1:
-
+                    customerManager.modifyAccount();
                     break;
                 case 2:
                     flowerManager.display();
                     break;
                 case 3:
-                    orderManager.addFlower();
+                    orderManager.addFlower(orderManager);
                     break;
                 case 4:
                     orderManager.viewOrderSorted();
+                    break;
+                case 5:
+                    orderManager = new OrderManager(idCurrnetUser, accountManager);
+                    break;
+                case 6:
+                    System.out.println("Do you want to dave save[1/0-Y/N-T/F]: ");
+                    String isSave = scanner.nextLine();
+                    if("1".equals(isSave) | "Y".equals(isSave) | "T".equals(isSave)) {
+                        accountManager.save();
+                        customerManager.save();
+                        orderManager.save();
+                        System.out.println("Successfully save data");
+                    }
+                    System.out.println("Successfully logout");
                     break;
             }
         } while (choice != 6);

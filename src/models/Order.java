@@ -29,4 +29,48 @@ public class Order {
         this.flowers = flowers;
         this.totalPrice = totalPrice;
     }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getBuyerId() {
+        return buyerId;
+    }
+
+    public Float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public HashMap<String, Integer> getFlowers() {
+        return flowers;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setFlowers(HashMap<String, Integer> flowers) {
+        this.flowers = flowers;
+    }
+    
+    public void addFlower(String flowerName, Integer quantities) {
+        this.flowers.put(flowerName, quantities);
+    }
 }
