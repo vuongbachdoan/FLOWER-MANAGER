@@ -5,12 +5,11 @@
  */
 package models;
 
-import java.util.Date;
 import java.util.HashMap;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class Order {
     private String orderId;

@@ -7,7 +7,7 @@ package controllers;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public interface BaseManager {
     

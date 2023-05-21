@@ -5,11 +5,9 @@
  */
 package models;
 
-import java.util.Date;
-
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class Flower {
     private String flowerId;

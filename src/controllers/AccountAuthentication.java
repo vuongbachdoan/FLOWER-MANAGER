@@ -9,7 +9,7 @@ import models.Account;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class AccountAuthentication {
 

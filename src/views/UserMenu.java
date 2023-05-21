@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class UserMenu extends CommonMenu {
     

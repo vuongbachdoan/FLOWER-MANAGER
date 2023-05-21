@@ -10,12 +10,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import models.Account;
 import models.Customer;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class CustomerManager extends AccountManager{
 

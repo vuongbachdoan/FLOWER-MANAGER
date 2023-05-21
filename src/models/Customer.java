@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class Customer {
     private String customerId;

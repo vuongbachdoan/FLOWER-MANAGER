@@ -24,7 +24,7 @@ import models.Order;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class OrderManager {
     private Scanner scanner = new Scanner(System.in);

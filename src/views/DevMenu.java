@@ -6,7 +6,6 @@
 package views;
 
 import controllers.AccountManager;
-import controllers.CustomerManager;
 import controllers.FlowerManager;
 import controllers.OrderManager;
 import controllers.StaffManager;
@@ -18,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Nguyen Thi Thuy Dung
+ * @author user
  */
 public class DevMenu extends CommonMenu {
 

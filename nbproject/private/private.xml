@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/FlowerManager.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/customers.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Customer.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Flower.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Order.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Person.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/views/CommonMenu.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/config.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/views/DevMenu.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/Main.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/BaseManager.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/AccountManager.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/Utilities.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/staffs.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/flowers.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/views/UserMenu.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Config.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/orders.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Staff.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/data/accounts.dat</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Account.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/OrderManager.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/CustomerManager.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/AccountAuthentication.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/models/Login.java</file>
+            <file>file:/C:/Dev/Java/JavaWeb/FlowerShopProject/src/controllers/StaffManager.java</file>
+        </group>
+    </open-files>
+</project-private>
