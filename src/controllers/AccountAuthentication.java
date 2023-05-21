@@ -13,12 +13,13 @@ import models.Account;
  */
 public class AccountAuthentication {
 
-    private String id;
-    private String password;
-    private Account account;
+    private String id; // id of account
+    private String password; // password of account
+    private Account account; // account object
 
+    // inititial Authentication with id and password
     public AccountAuthentication(String id, String password) {
-        this.id = id;
+        this.id = id; 
         this.password = password;
     }
 
@@ -38,12 +39,18 @@ public class AccountAuthentication {
         return this.account;
     }
 
+    /**
+     * Function to check login, if user informantion not match
+     * @return true if exist user informations
+     * @return false if not exist user informations
+     * @return
+     */
     public boolean checkLogin() {
-        AccountManager accountManager = new AccountManager();
-        this.account = accountManager.searchById(this.id);
-        if (this.account != null && this.account.getPassword().equals(password)) {
+        AccountManager accountManager = new AccountManager(); // to access function of account manager
+        this.account = accountManager.searchById(this.id); // get account save in database
+        if (this.account != null && this.account.getPassword().equals(password)) { // check if account information match
             return true;
-        } else {
+        } else { // account not found
             this.account = null;
             return false;
         }

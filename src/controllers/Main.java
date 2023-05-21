@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        CommonMenu commonMenu = new CommonMenu();
-        commonMenu.menu();
+        CommonMenu commonMenu = new CommonMenu(); // to access menu function
+        commonMenu.menu(); // call menu function
     }
 }

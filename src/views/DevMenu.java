@@ -52,8 +52,8 @@ public class DevMenu extends CommonMenu {
                 System.out.print("Enter your choice:");
                 inputChoice = scanner.nextLine();
             } while (!utils.validateNumber(inputChoice)
-                    && (Integer.parseInt(inputChoice) < 1
-                    || Integer.parseInt(inputChoice) > 8));
+                    || (Integer.parseInt(inputChoice) < 1
+                    && Integer.parseInt(inputChoice) > 8));
             choice = Integer.parseInt(inputChoice);
 
             switch (choice) {
@@ -80,13 +80,16 @@ public class DevMenu extends CommonMenu {
                     }
                     break;
                 }
-                case 7: 
+                case 7:
                     orderManager.removeOrder();
                     break;
                 case 8:
-                    System.out.println("Do you want to save save[1/0-Y/N-T/F]: ");
-                    String isSave = scanner.nextLine();
-                    if("1".equals(isSave) | "Y".equals(isSave) | "T".equals(isSave)) {
+                    do {
+                        System.out.println("Do you want to dave save[1/0-Y/N-T/F]: ");
+                        inputChoice = scanner.nextLine();
+                    } while (!inputChoice.matches("^[10YNTF]{1}$"));
+                    String isSave = inputChoice;
+                    if ("1".equals(isSave) | "Y".equals(isSave) | "T".equals(isSave)) {
                         accountManager.save();
                         staffManager.save();
                         flowerManager.save();

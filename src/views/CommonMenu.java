@@ -6,6 +6,7 @@
 package views;
 
 import controllers.AccountAuthentication;
+import controllers.Utilities;
 import java.util.Scanner;
 
 /**
@@ -13,20 +14,29 @@ import java.util.Scanner;
  * @author user
  */
 public class CommonMenu {
-    
-    public void menu () {
+
+    private Utilities utils = new Utilities();
+
+    public void menu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter id AXXX: ");
-        String id = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-        
+        String inputCheck;
+        do {
+            System.out.print("Enter id AXXX: ");
+            inputCheck = scanner.nextLine();
+        } while (!utils.validateId("AXXX", inputCheck));
+        String id = inputCheck;
+        do {
+            System.out.print("Enter password: ");
+            inputCheck = scanner.nextLine();
+        } while (inputCheck.isEmpty() || inputCheck.contains(" "));
+        String password = inputCheck;
+
         // Login function here
         AccountAuthentication authCredential = new AccountAuthentication(id, password);
-        if(authCredential.checkLogin()) { // replace true by check login function
+        if (authCredential.checkLogin()) { // replace true by check login function
             System.out.println("Successfully login.");
             String role = authCredential.getAccount().getRole();
-            if(role.equals("DEV")) { // replace true by check Role is USER
+            if (role.equals("DEV")) { // replace true by check Role is USER
                 DevMenu devMenu = new DevMenu(id);
                 devMenu.menu();
             } else {
